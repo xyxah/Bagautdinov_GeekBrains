@@ -83,6 +83,7 @@ public class MainApp {
         System.out.println("Task 6");
         int[] arr6 = {1,2,3};
         System.out.println(task6(arr6));
+        System.out.println();
 
 
 
@@ -145,19 +146,14 @@ public class MainApp {
                 continue;
             }
 
-            if (i > 0){
-                if (i + n < arr.length) {
-                    int s = arr[i + n];
-                    arr[i + n] = buf;
-                    buf = s;
-                    continue;
-                }
-            }
-
-            if (i == arr.length - 1) {
-                arr[n-1] = buf;
+            if (i + n < arr.length) {
+                int s = arr[i + n];
+                arr[i + n] = buf;
+                buf = s;
                 continue;
             }
+
+            if (i == arr.length - 1) arr[n-1] = buf;
         }
     }
 
@@ -185,11 +181,7 @@ public class MainApp {
                 }
             }
 
-            if (i - n == 0) {
-                int s = arr[0];
-                arr[0] = buf;
-                continue;
-            }
+            if (i - n == 0) arr[0] = buf;
         }
     }
 
