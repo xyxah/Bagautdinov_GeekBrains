@@ -83,6 +83,14 @@ public class MainApp {
         System.out.println("Task 6");
         int[] arr6 = {1,2,3};
         System.out.println(task6(arr6));
+
+
+
+        // Task 7
+        System.out.println("Task 7");
+        int[] arr7 = {1,2,3,4,5};
+        int n = -2;
+        task7(arr7, n);
     }
 
     public static boolean task6 (int[] arr) {
@@ -105,6 +113,89 @@ public class MainApp {
             if (left_sum == right_sum) return true;
         }
         return false;
+    }
+
+    public static void task7 (int[] arr, int n) {
+
+        arrConsole(arr);
+
+        if (n > 0){
+            for (int i = 0; i < n; i++)
+                rightStep(arr);
+        }
+
+        if (n < 0){
+            for (int i = n; i < 0; i++)
+                leftStep(arr);
+        }
+
+        arrConsole(arr);
+    }
+
+    public static void rightStep(int[] arr) {
+
+        int buf = 0;
+        int n = 1;
+
+        for (int i = 0; i < arr.length; i++){
+
+            if (i == 0){
+                buf = arr[i + n];
+                arr[i + n] = arr[i];
+                continue;
+            }
+
+            if (i > 0){
+                if (i + n < arr.length) {
+                    int s = arr[i + n];
+                    arr[i + n] = buf;
+                    buf = s;
+                    continue;
+                }
+            }
+
+            if (i == arr.length - 1) {
+                arr[n-1] = buf;
+                continue;
+            }
+        }
+    }
+
+    public static void leftStep(int[] arr) {
+
+        int first = arr[0];
+        int buf = 0;
+        int n = 1;
+
+        for (int i = arr.length - 1; i >= 0; i--){
+
+            if (i == arr.length - 1){
+                buf = arr[i - n];
+                arr[i - n] = arr[i];
+                arr[i] = first;
+                continue;
+            }
+
+            if (i > 0){
+                if (i - n > 0) {
+                    int s = arr[i - n];
+                    arr[i - n] = buf;
+                    buf = s;
+                    continue;
+                }
+            }
+
+            if (i - n == 0) {
+                int s = arr[0];
+                arr[0] = buf;
+                continue;
+            }
+        }
+    }
+
+    public static void arrConsole(int[] arr) {
+        for (int j : arr) System.out.print(j);
+        System.out.println();
     }
 
 }
