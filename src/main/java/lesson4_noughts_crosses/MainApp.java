@@ -18,10 +18,10 @@ public class MainApp {
 
     public static void main(String[] args) {
         initMap();
-        drawTable(MAP, SIZE);
+        drawTable(MAP);
         while (true) {
             humanStep();
-            drawTable(MAP, SIZE);
+            drawTable(MAP);
             if (checkWin(DOT_X)) {
                 System.out.println("Вы победили.");
                 break;
@@ -30,8 +30,8 @@ public class MainApp {
                 System.out.println("Ничья");
                 break;
             }
-            compStep1();
-            drawTable(MAP, SIZE);
+            compStep();
+            drawTable(MAP);
             if (checkWin(DOT_O)) {
                 System.out.println("Победил Компьютер.");
                 break;
@@ -62,7 +62,7 @@ public class MainApp {
         }
     }
 
-    public static void drawTable(char[][] map,int size) {
+    public static void drawTable(char[][] map) {
         System.out.println(" -------------");
         for(int i = 0; i < SIZE;i++){
             for (int j = 0; j < SIZE; j++) {
@@ -76,8 +76,7 @@ public class MainApp {
 
     public static boolean isCellValid(int x, int y) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
-        if (MAP[y][x] == DOT_EMPTY) return true;
-        return false;
+        return MAP[y][x] == DOT_EMPTY;
     }
 
     public static void humanStep() {
@@ -91,16 +90,6 @@ public class MainApp {
     }
 
     public static void compStep() {
-        int x, y;
-        do {
-            x = rand.nextInt(SIZE);
-            y = rand.nextInt(SIZE);
-        } while (!isCellValid(x, y));
-        System.out.println("Компьютер сходил в точку " + (x + 1) + " " + (y + 1));
-        MAP[y][x] = DOT_O;
-    }
-
-    public static void compStep1() {
         int x, y;
         if (!blockPlayer()) {
             do {
