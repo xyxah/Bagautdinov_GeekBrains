@@ -1,7 +1,5 @@
 package lesson8_oop_java;
 
-import java.util.ArrayList;
-
 public class MainApp {
 
     public static void main(String[] args) {
@@ -24,13 +22,11 @@ public class MainApp {
         for (Object obstacle : obstacles) System.out.println(obstacle.toString());
 
         System.out.println("\nРезультаты:");
-        for (int i = 0; i < members.length; i++){
+        for (Object member : members) {
             System.out.println();
-            for (int j = 0; j < obstacles.length; j++){
-                members[i].equals(obstacles[j]);
+            for (Object obstacle : obstacles) {
+                member.equals(obstacle);
             }
         }
-
     }
-
 }
