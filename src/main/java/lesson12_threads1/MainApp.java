@@ -73,6 +73,3 @@ class MyThread extends Thread {
         System.out.printf("%s finished. \n", name);
     }
 }
-
-
-
